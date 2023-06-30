@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest>
+    <application name="CSK_Module_DeviceScanner">
+        <crown name="CSK_Module_DeviceScanner">
+            <desc>This is an automatically generated CROWN (description not necessary).</desc>
+            <serves/>
+        </crown>
+        <crown name="CSK_DeviceScanner">
+            <desc>Module to scan and configure connected devices by using the Command.Scan CROWN. +
+This module provides a UI for all relevant features. +
+Typically the feature of this module is used like this: +
+{empty} +
+1) Scan for devices. If wanted only a specific interface can be preselected for the scan. +
+2) Select a found device. +
+3) Preset new values for this device. +
+4) Activate this new setup by sending it to the device. +</desc>
+            <serves>
+                <event name="OnNewDeviceTable">
+                    <desc>Notify json-list of found devices.</desc>
+                    <param desc="Json list of devices" multiplicity="1" name="deviceTable" type="string"/>
+                </event>
+                <event name="OnNewIP">
+                    <desc>Notify IP setting.</desc>
+                    <param desc="IP" multiplicity="1" name="ip" type="string"/>
+                </event>
+                <event name="OnNewSubnetMask">
+                    <desc>Notify Subnet setting.</desc>
+                    <param desc="Subnetmask" multiplicity="1" name="subnetMask" type="string"/>
+                </event>
+                <event name="OnNewGateway">
+                    <desc>Notify Gateway setting.</desc>
+                    <param desc="Gateway IP" multiplicity="1" name="gateway" type="string"/>
+                </event>
+                <event name="OnNewDHCPStatus">
+                    <desc>Notify DHCP status.</desc>
+                    <param desc="DHCP status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewErrorActive">
+                    <desc>Notify if error of input parameters is active.</desc>
+                    <param desc="Status of error." multiplicity="1" name="active" type="bool"/>
+                </event>
+                <event name="OnDeviceSelected">
+                    <desc>Notify if a device was selected.</desc>
+                    <param desc="Status if a device is selected." multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewScanStatus">
+                    <desc>Notify scan / setup status.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="string"/>
+                </event>
+                <event name="OnNewInterfaceSelected">
+                    <desc>Notify selected interface.</desc>
+                    <param desc="Selected interface" multiplicity="1" name="selection" type="string"/>
+                </event>
+                <event name="OnNewInterfaceList">
+                    <desc>Notify available interfaces.</desc>
+                    <param desc="list of interfaces" multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnUserLevelOperatorActive">
+                    <desc>Status of Operator userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelMaintenanceActive">
+                    <desc>Status of Maintenance userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelServiceActive">
+                    <desc>Status of Service userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelAdminActive">
+                    <desc>Status of Admin userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <function name="pageCalled">
+                    <desc>Function to register "OnResume" of the module UI (only as helper function).</desc>
+                    <return desc="Empty string (only needed to simplify binding)." multiplicity="1" name="empty" type="string"/>
+                </function>
+                <function name="scanForDevices">
+                    <desc>Scan for connected devices via Command.Scan API.</desc>
+                </function>
+                <function name="selectDevice">
+                    <desc>Select entry of device list (used in UI).</desc>
+                    <param desc="Selected device" multiplicity="1" name="selection" type="string"/>
+                </function>
+                <function name="setDeviceIP">
+                    <desc>Set new IP for selected device (see "selectDevice").</desc>
+                    <param desc="IP" multiplicity="1" name="ip" type="string"/>
+                </function>
+                <function name="setSubnetMask">
+                    <desc>Set subnetmask for selected device (see "selectDevice").</desc>
+                    <param desc="Subnetmask" multiplicity="1" name="subnetMask" type="string"/>
+                </function>
+                <function name="setGateway">
+                    <desc>Set Gateways for selected device (see "selectDevice").</desc>
+                    <param desc="Gateway IP" multiplicity="1" name="gateway" type="string"/>
+                </function>
+                <function name="setDHCP">
+                    <desc>Set DHCP status for selected device (see "selectDevice").</desc>
+                    <param desc="Status of DHCP" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="sendNewConfig">
+                    <desc>Try to apply new config on selected device (before this use the "set..." functions).</desc>
+                </function>
+                <function name="getDeviceListJSON">
+                    <desc>Get json-list of found devices.</desc>
+                    <return desc="Json list of devices" multiplicity="1" name="deviceList" type="string"/>
+                </function>
+                <function name="selectInterface">
+                    <desc>Select interface to search on.</desc>
+                    <param desc="Interface ID" multiplicity="1" name="selection" type="string"/>
+                </function>
+            </serves>
+        </crown>
+        <meta key="author">SICK AG</meta>
+        <meta key="version">2.0.0</meta>
+        <meta key="priority">low</meta>
+        <meta key="copy-protected">false</meta>
+        <meta key="read-protected">false</meta>
+        <meta key="crown2-flow-engine">false</meta>
+        <meta key="LuaLoadAllEngineAPI">false</meta>
+        <entry default="CSK_Module_DeviceScanner.lua" path="scripts"/>
+    </application>
+</manifest>
