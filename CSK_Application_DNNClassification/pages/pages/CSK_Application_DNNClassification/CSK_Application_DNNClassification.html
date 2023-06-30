@@ -1,0 +1,293 @@
+<layout-row id="RowLayout1"
+	class=".myCustomSpacerVert10_CSK_Application_DNNClassification"
+	style="align-items: stretch">
+	<layout-column id="ColumnLayout7" style="align-items: stretch">
+		<layout-row id="RowLayout9">
+			<layout-column id="ColumnLayout12" style="align-items: stretch">
+				<davinci-value-display id="VD_DNNSetup"
+					label="DNNClassification General Setup">
+				</davinci-value-display>
+				<davinci-collapse id="Collapse1" collapsed-title="Show Info"
+					expanded-title="Hide">
+					<davinci-callout id="Callout_InfoText" type="info">
+						<span>
+							By pressing the &quot;Default Setup&quot; button the app will load a DNN model and some images to the /public folder and will start the offline image player to process the images with the CSK_DeepLearning module.
+						</span>
+					</davinci-callout>
+				</davinci-collapse>
+				<davinci-button id="Button_DefaultSetup" type="primary"
+					icon-position="append" style="flex-grow: 1; flex-shrink: 0">
+					<span>Default Setup</span>
+					<crown-binding event="submit"
+						name="CSK_DNNClassification/setDefaultSetup" auto-commit>
+					</crown-binding>
+				</davinci-button>
+				<layout-row id="RowLayout5" style="justify-content: space-between">
+					<layout-column id="ColumnLayout8">
+						<davinci-value-display id="VD_OfflineMode" value="Offline mode:">
+						</davinci-value-display>
+					</layout-column>
+					<layout-column id="ColumnLayout9" style="align-items: flex-end">
+						<davinci-toggle-switch id="TS_OfflineMode">
+							<crown-edpws-binding property="checked"
+								name="CSK_DNNClassification/OnNewStatusOfflineMode"
+								update-on-resume>
+							</crown-edpws-binding>
+							<crown-binding event="change"
+								name="CSK_DNNClassification/setOfflineImageMode"
+								path="param/args/status" auto-commit>
+							</crown-binding>
+						</davinci-toggle-switch>
+					</layout-column>
+				</layout-row>
+				<layout-row id="placeholder1"
+					class="myCustomSpacerVert10_CSK_Application_DNNClassification">
+				</layout-row>
+				<layout-row id="RowLayout8" style="justify-content: space-between">
+					<layout-column id="ColumnLayout10">
+						<davinci-value-display id="VD_FTPTransfer" value="FTP transfer:">
+						</davinci-value-display>
+					</layout-column>
+					<layout-column id="ColumnLayout11" style="align-items: flex-end">
+						<davinci-toggle-switch id="TS_FTPTransfer">
+							<crown-binding event="change"
+								name="CSK_DNNClassification/setFTPTransfer"
+								path="param/args/status" auto-commit>
+							</crown-binding>
+							<crown-edpws-binding property="checked"
+								name="CSK_DNNClassification/OnNewStatusStoreOnFTP"
+								update-on-resume>
+							</crown-edpws-binding>
+						</davinci-toggle-switch>
+					</layout-column>
+				</layout-row>
+			</layout-column>
+		</layout-row>
+		<layout-column id="ColumnLayout1"
+			style="align-items: stretch; justify-content: flex-end">
+			<stacked-view id="SV_Login">
+				<stacked-pane id="SP_LoginOK" value="true">
+					<layout-column id="Column_PersistentData"
+						class="myCustomFrame_CSK_Application_DNNClassification"
+						style="align-items: stretch">
+						<layout-row id="RowLayout4"
+							style="justify-content: space-between; align-items: center">
+							<layout-column id="ColumnLayout5" style="align-items: stretch">
+								<davinci-value-display id="VD_ParameterName" value="Parameter name:"
+									title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+								</davinci-value-display>
+							</layout-column>
+							<layout-column id="ColumnLayout6" style="align-items: stretch">
+								<davinci-text-field id="TF_ParameterName" type="text"
+									title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+									<crown-edpws-binding property="value"
+										name="CSK_DNNClassification/OnNewParameterName" update-on-resume>
+									</crown-edpws-binding>
+									<crown-binding event="change"
+										name="CSK_DNNClassification/setParameterName"
+										path="param/args/name" auto-commit>
+									</crown-binding>
+									<crown-edpws-binding property="disabled"
+										name="CSK_DNNClassification/OnPersistentDataModuleAvailable"
+										update-on-resume converter="function(value) {return !value;}">
+									</crown-edpws-binding>
+								</davinci-text-field>
+							</layout-column>
+						</layout-row>
+						<layout-row id="RowLayout2"
+							style="justify-content: space-between; align-items: center">
+							<davinci-value-display id="VD_LoadConfig"
+								value="Load config on app start:">
+							</davinci-value-display>
+							<davinci-checkbox
+								id="Load configured parameters from CSK_PersistentData on app start.">
+								<span></span>
+								<crown-edpws-binding property="checked"
+									name="CSK_DNNClassification/OnNewStatusLoadParameterOnReboot"
+									update-on-resume>
+								</crown-edpws-binding>
+								<crown-edpws-binding property="disabled"
+									name="CSK_DNNClassification/OnPersistentDataModuleAvailable"
+									update-on-resume converter="function(value) {return !value;}">
+								</crown-edpws-binding>
+								<crown-binding event="change"
+									name="CSK_DNNClassification/setLoadOnReboot"
+									path="param/args/status" auto-commit>
+								</crown-binding>
+							</davinci-checkbox>
+						</layout-row>
+						<layout-row id="RowLayout3">
+							<layout-column id="ColumnLayout3" style="align-items: stretch">
+								<davinci-button id="B_LoadConfig" type="primary"
+									icon-position="append"
+									title="Load configured parameters from CSK_PersistentData module.">
+									<span>Load Config</span>
+									<crown-binding event="submit"
+										name="CSK_DNNClassification/loadParameters" auto-commit>
+									</crown-binding>
+									<crown-edpws-binding property="disabled"
+										name="CSK_DNNClassification/OnPersistentDataModuleAvailable"
+										update-on-resume converter="function(value) {return !value;}">
+									</crown-edpws-binding>
+								</davinci-button>
+							</layout-column>
+							<layout-column id="ColumnLayout4" style="align-items: stretch">
+								<davinci-button id="B_SaveConfig" type="primary"
+									icon-position="append"
+									title="Save current configured parameters of this module within CSK_PersistentData module.">
+									<span>Save Config</span>
+									<crown-binding event="submit"
+										name="CSK_DNNClassification/sendParameters" auto-commit>
+									</crown-binding>
+									<crown-edpws-binding property="disabled"
+										name="CSK_DNNClassification/OnPersistentDataModuleAvailable"
+										update-on-resume converter="function(value) {return !value;}">
+									</crown-edpws-binding>
+								</davinci-button>
+							</layout-column>
+						</layout-row>
+					</layout-column>
+				</stacked-pane>
+				<stacked-pane id="SP_LoginNOK" value="false">
+					<davinci-callout id="Callout1" type="info">
+						<span>
+							Please log in via CSK_UserManagement module (at least via user level "Operator")
+						</span>
+					</davinci-callout>
+				</stacked-pane>
+				<crown-edpws-binding property="value"
+					name="CSK_DNNClassification/OnUserLevelOperatorActive"
+					update-on-resume
+					converter="function(value) {return value.toString();}">
+				</crown-edpws-binding>
+			</stacked-view>
+		</layout-column>
+	</layout-column>
+	<layout-column id="ColumnLayout2"
+		style="align-items: stretch; flex-grow: 3">
+		<layout-row id="RowLayout16" style="flex-grow: 0">
+            <layout-column id="ColumnLayout51" style="align-items: stretch">
+				<stacked-view id="SV_OfflineMode">
+					<stacked-pane id="SP_OfflineMode" value="true">
+						<layout-row id="RowLayout34"
+							style="flex-grow: 0; align-self: flex-start; justify-content: space-between">
+							<layout-column id="ColumnLayout35" style="align-items: stretch">
+								<davinci-value-display id="VD_OfflineImagePlayer" value=""
+									label="Offline image player functions:">
+								</davinci-value-display>
+								<layout-row id="RowLayout44" style="justify-content: space-between">
+									<layout-column id="ColumnLayout13" style="align-items: stretch">
+										<davinci-button id="Button_Start" type="primary"
+											icon-position="append">
+											<span>Start</span>
+											<crown-binding event="submit" name="CSK_ImagePlayer/startProvider"
+												auto-commit>
+											</crown-binding>
+										</davinci-button>
+									</layout-column>
+									<layout-column id="ColumnLayout72" style="align-items: stretch">
+										<davinci-button id="Button_Stop" type="primary"
+											icon-position="append">
+											<span>Stop</span>
+											<crown-binding event="submit" name="CSK_ImagePlayer/stopProvider"
+												auto-commit>
+											</crown-binding>
+										</davinci-button>
+									</layout-column>
+									<layout-column id="ColumnLayout623" style="align-items: stretch">
+										<davinci-button id="Button_SingleTrigger" type="primary"
+											icon-position="append">
+											<span>SingleTrigger</span>
+											<crown-binding event="submit" name="CSK_ImagePlayer/triggerOnce"
+												auto-commit>
+											</crown-binding>
+										</davinci-button>
+									</layout-column>
+								</layout-row>
+							</layout-column>
+						</layout-row>
+					</stacked-pane>
+					<stacked-pane id="SP_NoOfflineMode" value="false">
+						<layout-column id="ColumnLayout104" style="align-items: stretch">
+							<stacked-view id="SV_CameraSwMode">
+								<stacked-pane id="SP_CameraSwMode" value="true">
+									<layout-row id="RowLayout53">
+										<layout-column id="ColumnLayout86" style="align-items: stretch">
+											<davinci-value-display id="VD_CameraTrigger" value=""
+												label="Camera trigger functions:">
+											</davinci-value-display>
+											<layout-row id="RowLayout6">
+												<layout-column id="ColumnLayout95">
+												<davinci-button id="Button_CameraSwTrigger" type="primary"
+													icon-position="append">
+												<span>SW Trigger</span>
+												<crown-binding event="submit"
+													name="CSK_MultiRemoteCamera/cameraSoftwareTrigger" auto-commit>
+												</crown-binding>
+												</davinci-button>
+												</layout-column>
+											</layout-row>
+										</layout-column>
+									</layout-row>
+								</stacked-pane>
+								<stacked-pane id="SP_NoCameraSwMode" value="false">
+								</stacked-pane>
+								<crown-edpws-binding property="value"
+									name="CSK_MultiRemoteCamera/OnSWTriggerActive" update-on-resume
+									converter="function(value) {return value.toString();}">
+								</crown-edpws-binding>
+							</stacked-view>
+							<stacked-view id="SV_TriggerDelay">
+								<stacked-pane id="SP_HwTriggerModeOn" value="true">
+									<layout-row id="RowLayout95">
+										<layout-column id="ColumnLayout17" style="align-items: stretch">
+											<davinci-button id="Button_TriggerPause" type="primary"
+												icon-position="append">
+												<span>Trigger Pause</span>
+												<crown-binding event="submit"
+													name="CSK_MultiRemoteCamera/setDigitalTriggerPause" auto-commit>
+												</crown-binding>
+											</davinci-button>
+											<davinci-status-indicator id="SI_TriggerPause"
+												class="myCustomCircle_CSK_Module_MultiRemoteCamera">
+												<span></span>
+												<crown-edpws-binding property="status"
+													name="CSK_MultiRemoteCamera/OnNewStatusDigitalTriggerPause"
+													update-on-resume>
+												</crown-edpws-binding>
+											</davinci-status-indicator>
+										</layout-column>
+									</layout-row>
+								</stacked-pane>
+								<stacked-pane id="SP_CameraHwTriggerModeOff" value="false">
+								</stacked-pane>
+								<crown-edpws-binding property="value"
+									name="CSK_MultiRemoteCamera/OnHWTriggerActive" update-on-resume
+									converter="function(value) {return value.toString();}">
+								</crown-edpws-binding>
+							</stacked-view>
+						</layout-column>
+					</stacked-pane>
+					<crown-edpws-binding property="value"
+						name="CSK_DNNClassification/OnNewStatusOfflineMode"
+						update-on-resume
+						converter="function(value) {return value.toString();}">
+					</crown-edpws-binding>
+				</stacked-view>
+			</layout-column>
+        </layout-row>
+		<layout-row id="iFrame_MultiDeepLearning">
+			<iframe
+				src="/#!msdd=CSK_Module_MultiDeepLearning&page=CSK_Module_MultiDeepLearning&fullscreen=true"
+				title="MultiDeepLearning"
+				style="width: 99%; height: 99%">
+			</iframe>
+		</layout-row>
+		<stacked-view id="SV_PageCalled">
+			<crown-binding property="value"
+				name="CSK_DNNClassification/pageCalled" path="result/data/empty"
+				auto-update="0" update-on-resume>
+			</crown-binding>
+		</stacked-view>
+	</layout-column>
+</layout-row>

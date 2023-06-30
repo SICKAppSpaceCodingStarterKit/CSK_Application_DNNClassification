@@ -1,0 +1,65 @@
+{
+  "version": "1.0", 
+  "pages": [
+    {
+      "category": "DNN classification application",
+      "pages": [
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Application_DNNClassification.html",
+          "name": "Overview"
+        }
+      ]
+    },
+    {
+      "category": "CSK Modules",
+      "pages": [
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Module_Logger_Frame.html",
+          "name": "Logger"
+        },
+
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Module_DateTime_Frame.html",
+          "name": "Date Time"
+        },
+
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Module_PowerManager_Frame.html",
+          "name": "Power Manager"
+        },
+
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Module_DeviceScanner_Frame.html",
+          "name": "Device Scanner"
+        },
+
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Module_MultiRemoteCamera_Frame.html",
+          "name": "Camera"
+        },
+
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Module_ImagePlayer_Frame.html",
+          "name": "Image Player"
+        },
+
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Module_MultiDeepLearning_Frame.html",
+          "name": "Deep Learning"
+        },
+
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Module_FTPClient_Frame.html",
+          "name": "FTP"
+        },
+
+        {
+          "path": "CSK_Application_DNNClassification/CSK_Module_PersistentData_Frame.html",
+          "name": "Persistent Data"
+        }
+
+
+      ]
+    }
+  ]
+}
